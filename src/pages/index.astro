@@ -1,31 +1,41 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { colors } from "../lib/colors";
 import copyIcon from "../assets/copy.svg";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Ducolors - Vintage guitar colors">
 	<main>
-		<div class="flex flex-col">
-			<div class="text-4xl">
-				<span class="font-bold">Duco</span><span class="italic"
-					>lors</span
+		<div class="flex flex-col gap-10">
+			<div class="text-4xl flex flex-col">
+				<div>
+					<span class="font-black">Duco</span><span class="italic"
+						>lors</span
+					>
+				</div>
+				<quote class="text-slate-500 text-xs"
+					>Vintage guitar colors</quote
 				>
 			</div>
-			<quote class="text-slate-500 text-sm">Vintage guitar colors</quote>
-			<div class="grid grid-cols-4 gap-4">
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-4 sm:grid-cols-2">
 				{
 					colors.map((color) => (
-						<div class="flex flex-col justify-center border-2 border-red-500 gap-4 items-center">
-							{color.name}
+						<div class="flex flex-col justify-center border border-slate-100 p-2 bg-white gap-4 items-center text-base">
+							<span class="font-semibold">
+								{color.name.toUpperCase()}
+							</span>
 							<div
 								style={{ backgroundColor: color.hex }}
-								class="w-2/3 h-28 rounded-md"
+								class="w-28 h-28 rounded-md"
 							/>
 							<div class="flex gap-4 items-center">
 								<>
-									<div>{color.hex}</div>
-									<img src={copyIcon.src} />
+									<div class="select-none">{color.hex}</div>
+									<img
+										width="18"
+										src={copyIcon.src}
+										class="hover:cursor-pointer"
+									/>
 								</>
 							</div>
 						</div>
@@ -45,5 +55,20 @@ import copyIcon from "../assets/copy.svg";
 		color: black;
 		font-size: 20px;
 		line-height: 1.6;
+	}
+
+	.metallic {
+		background: linear-gradient(135deg, #d4d4d4, #a6a6a6, #d4d4d4);
+		background-size: 200% 200%;
+		animation: metallic 1.5s linear infinite;
+	}
+
+	@keyframes metallic {
+		0% {
+			background-position: 0% 50%;
+		}
+		100% {
+			background-position: 100% 50%;
+		}
 	}
 </style>
