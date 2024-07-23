@@ -1,7 +1,7 @@
 ---
 import { colors } from "../lib/colors";
-import copyIcon from "../assets/copy.svg";
 import Layout from "../layouts/Layout.astro";
+import ColorCard from "../components/ColorCard.astro";
 ---
 
 <Layout title="Ducolors - Vintage guitar colors">
@@ -20,25 +20,11 @@ import Layout from "../layouts/Layout.astro";
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-4 sm:grid-cols-2">
 				{
 					colors.map((color) => (
-						<div class="flex flex-col justify-center border border-slate-100 p-2 bg-white gap-4 items-center text-base">
-							<span class="font-semibold">
-								{color.name.toUpperCase()}
-							</span>
-							<div
-								style={{ backgroundColor: color.hex }}
-								class="w-28 h-28 rounded-md"
-							/>
-							<div class="flex gap-4 items-center">
-								<>
-									<div class="select-none">{color.hex}</div>
-									<img
-										width="18"
-										src={copyIcon.src}
-										class="hover:cursor-pointer"
-									/>
-								</>
-							</div>
-						</div>
+						<ColorCard
+							name={color.name}
+							currentColor={color.hex}
+							color={color.hex}
+						/>
 					))
 				}
 			</div>
