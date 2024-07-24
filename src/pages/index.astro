@@ -15,11 +15,12 @@ import ColorCard from "../components/ColorCard.astro";
 		<div class="flex flex-col gap-10">
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-4 sm:grid-cols-2">
 				{
-					colors.map((color) => (
+					colors.map(({ name, hex, key }) => (
 						<ColorCard
-							name={color.name}
-							currentColor={color.hex}
-							color={color.hex}
+							name={name}
+							currentColor={hex}
+							color={hex}
+							key={key}
 						/>
 					))
 				}
@@ -37,20 +38,5 @@ import ColorCard from "../components/ColorCard.astro";
 		max-width: calc(100% - 2rem);
 		color: black;
 		line-height: 1.6;
-	}
-
-	.metallic {
-		background: linear-gradient(135deg, #d4d4d4, #a6a6a6, #d4d4d4);
-		background-size: 200% 200%;
-		animation: metallic 1.5s linear infinite;
-	}
-
-	@keyframes metallic {
-		0% {
-			background-position: 0% 50%;
-		}
-		100% {
-			background-position: 100% 50%;
-		}
 	}
 </style>

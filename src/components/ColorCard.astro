@@ -5,9 +5,10 @@ interface Props {
 	name: string;
 	color: string;
 	currentColor: string;
+	key: string;
 }
 
-const { name, color, currentColor } = Astro.props;
+const { name, color, currentColor, key } = Astro.props;
 ---
 
 <div
@@ -20,7 +21,32 @@ const { name, color, currentColor } = Astro.props;
 	<div class="flex gap-4 items-center">
 		<>
 			<div class="select-none">{currentColor}</div>
-			<img width="18" src={copyIcon.src} class="hover:cursor-pointer" />
+			<button class={`copy-button`} data-key={key}>
+				<img
+					width="18"
+					src={copyIcon.src}
+					class="hover:cursor-pointer"
+				/>
+			</button>
 		</>
 	</div>
 </div>
+
+<script>
+	import { colors } from "../lib/colors";
+
+	document.addEventListener("DOMContentLoaded", () => {
+		document.querySelectorAll(".copy-button").forEach((button) => {
+			button.addEventListener("click", async (event) => {
+				const target = event.currentTarget as HTMLElement;
+				const key = target.getAttribute("data-key");
+				const color = colors.find((c) => c.key === key)?.hex || "";
+				try {
+					await navigator.clipboard.writeText(color);
+				} catch (error) {
+					console.error("Error al copiar el color:", error);
+				}
+			});
+		});
+	});
+</script>
