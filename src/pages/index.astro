@@ -5,11 +5,22 @@ import ColorCard from "../components/ColorCard.astro";
 ---
 
 <Layout title="Ducolors - Vintage guitar colors">
-	<header class="text-4xl flex flex-col">
-		<div>
-			<span class="font-black">Duco</span><span class="italic">lors</span>
+	<header class="flex justify-between items-center">
+		<div class="text-4xl flex flex-col">
+			<div>
+				<span class="font-black">Duco</span><span class="italic"
+					>lors</span
+				>
+			</div>
+			<quote class="text-slate-500 text-xs">Vintage guitar colors</quote>
 		</div>
-		<quote class="text-slate-500 text-xs">Vintage guitar colors</quote>
+		<div>
+			<select class="border border-slate-100 p-2">
+				<option value="hex">HEX</option>
+				<option value="rgb">RGB</option>
+				<option value="hsl">HSL</option>
+			</select>
+		</div>
 	</header>
 	<main>
 		<div class="flex flex-col gap-10">
